@@ -4,13 +4,13 @@ import './Profile.css'
 import {urlConfig} from '../../config';
 import { useAppContext } from '../../context/AuthContext';
 
-const Profile = () => {
+function Profile () {
   const [userDetails, setUserDetails] = useState({});
- const [updatedDetails, setUpdatedDetails] = useState({});
+ const [updatedDetails, setUpdatedDetails] = useState();
  const {setUserName} = useAppContext();
  const [changed, setChanged] = useState("");
 
- const [editMode, setEditMode] = useState(false);
+ const [editMode, setEditMode] = useState(false)
   const navigate = useNavigate();
   useEffect(() => {
     const authtoken = sessionStorage.getItem("auth-token");
@@ -77,6 +77,7 @@ const handleSubmit = async (e) => {
     if (response.ok) {
       // Update the user details in session storage
       setUserName(updatedDetails.name);//Step 1: Task 4
+      console.log(updatedDetails.name)
       sessionStorage.setItem("name", updatedDetails.name);//Step 1: Task 5
       setUserDetails(updatedDetails);
       setEditMode(false);
