@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const connectToDatabase = require('./db');
+const connectToDatabase = require('../models/db');
 
 // Get all gifts
 router.get('/', async (req, res) => {
